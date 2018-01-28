@@ -8,6 +8,21 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import Loader from '../Loader/Loader.jsx';
 import './BeerModal.scss';
 
+function debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+        var context = this, args = arguments;
+        var later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+};
+
 const mapStateToProps = state => {
     const test = new RegExp(`(${window.location.origin}/beer/(\\d+).*)`);
     const beerId = parseInt(window.location.href.replace(test, "$2"), 10);
@@ -45,22 +60,9 @@ class BeerModal extends Component {
     componentWillMount() {
         document.body.classList.add('stop-scrolling');
     }
-    componentWillUpdate(nextProps, nextState) {
+    componentWillUpdate(nextProps) {
         if(!(nextProps.beer || nextProps.isFetching)) {
             this.props.fetchNextPage();
-        }
-        if (nextProps.beersData.length && !nextState.suggestedBeers.length) {
-            const suggestedBeers = [];
-            for (let i = 0; suggestedBeers.length < 3; i++) {
-                const id = Math.floor(Math.random() * nextProps.beersData.length);
-                if (!suggestedBeers.some(beer => beer.id === id)) {
-                    const suggestedBeer = nextProps.beersData.find((beer => beer.id === id));
-                    if (suggestedBeer) {
-                        suggestedBeers.push(suggestedBeer);
-                    }
-                }
-            }
-            this.setState({suggestedBeers});
         }
     }
     componentWillUnmount() {
