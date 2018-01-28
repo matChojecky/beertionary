@@ -153,6 +153,45 @@ module.exports = {
               compact: true,
             },
           },
+            // Scss loader
+          {
+            test: /\.scss$/,
+            include: paths.appSrc,
+            use: [
+              require.resolve('style-loader'),
+              {
+                loader: require.resolve('css-loader'),
+                options: {
+                    importLoaders: 1,
+                },
+            },{
+                loader: require.resolve('sass-loader'),
+                options: {
+                    importLoaders: 1,
+                },
+            },
+            {
+                loader: require.resolve('postcss-loader'),
+                options: {
+                    // Necessary for external CSS imports to work
+                    // https://github.com/facebookincubator/create-react-app/issues/2677
+                    ident: 'postcss',
+                    plugins: () => [
+                        require('postcss-flexbugs-fixes'),
+                        autoprefixer({
+                            browsers: [
+                                '>1%',
+                                'last 4 versions',
+                                'Firefox ESR',
+                                'not ie < 9', // React doesn't support IE8 anyway
+                            ],
+                            flexbox: 'no-2009',
+                        }),
+                    ],
+                },
+              },
+            ]
+          },
           // The notation here is somewhat confusing.
           // "postcss" loader applies autoprefixer to our CSS.
           // "css" loader resolves paths in CSS and adds assets as dependencies.
@@ -211,6 +250,14 @@ module.exports = {
               )
             ),
             // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
+          },
+          {
+              test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+              loader: "url-loader?limit=10000&mimetype=application/font-woff"
+          },
+          {
+              test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+              loader: "file-loader"
           },
           // "file" loader makes sure assets end up in the `build` folder.
           // When you `import` an asset, you get its filename.
