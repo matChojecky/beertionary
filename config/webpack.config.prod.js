@@ -153,45 +153,6 @@ module.exports = {
               compact: true,
             },
           },
-            // Scss loader
-          {
-            test: /\.scss$/,
-            include: paths.appSrc,
-            use: [
-              require.resolve('style-loader'),
-              {
-                loader: require.resolve('css-loader'),
-                options: {
-                    importLoaders: 1,
-                },
-            },{
-                loader: require.resolve('sass-loader'),
-                options: {
-                    importLoaders: 1,
-                },
-            },
-            {
-                loader: require.resolve('postcss-loader'),
-                options: {
-                    // Necessary for external CSS imports to work
-                    // https://github.com/facebookincubator/create-react-app/issues/2677
-                    ident: 'postcss',
-                    plugins: () => [
-                        require('postcss-flexbugs-fixes'),
-                        autoprefixer({
-                            browsers: [
-                                '>1%',
-                                'last 4 versions',
-                                'Firefox ESR',
-                                'not ie < 9', // React doesn't support IE8 anyway
-                            ],
-                            flexbox: 'no-2009',
-                        }),
-                    ],
-                },
-              },
-            ]
-          },
           // The notation here is somewhat confusing.
           // "postcss" loader applies autoprefixer to our CSS.
           // "css" loader resolves paths in CSS and adds assets as dependencies.
@@ -204,53 +165,83 @@ module.exports = {
           // tags. If you use code splitting, however, any async bundles will still
           // use the "style" loader inside the async code so CSS from them won't be
           // in the main CSS file.
-          {
-            test: /\.css$/,
-            loader: ExtractTextPlugin.extract(
-              Object.assign(
-                {
-                  fallback: {
-                    loader: require.resolve('style-loader'),
-                    options: {
-                      hmr: false,
-                    },
-                  },
-                  use: [
+
+            // Scss loader
+            {
+                test: /\.scss$/,
+                include: paths.appSrc,
+                use: [
+                    require.resolve('style-loader'),
                     {
-                      loader: require.resolve('css-loader'),
-                      options: {
-                        importLoaders: 1,
-                        minimize: true,
-                        sourceMap: shouldUseSourceMap,
-                      },
+                        loader: require.resolve('css-loader'),
+                        options: {
+                            importLoaders: 1,
+                        },
+                    },{
+                        loader: require.resolve('sass-loader'),
+                        options: {
+                            importLoaders: 1,
+                        },
                     },
                     {
-                      loader: require.resolve('postcss-loader'),
-                      options: {
-                        // Necessary for external CSS imports to work
-                        // https://github.com/facebookincubator/create-react-app/issues/2677
-                        ident: 'postcss',
-                        plugins: () => [
-                          require('postcss-flexbugs-fixes'),
-                          autoprefixer({
-                            browsers: [
-                              '>1%',
-                              'last 4 versions',
-                              'Firefox ESR',
-                              'not ie < 9', // React doesn't support IE8 anyway
+                        loader: require.resolve('postcss-loader'),
+                        options: {
+                            // Necessary for external CSS imports to work
+                            // https://github.com/facebookincubator/create-react-app/issues/2677
+                            ident: 'postcss',
+                            plugins: () => [
+                                require('postcss-flexbugs-fixes'),
+                                autoprefixer({
+                                    browsers: [
+                                        '>1%',
+                                        'last 4 versions',
+                                        'Firefox ESR',
+                                        'not ie < 9', // React doesn't support IE8 anyway
+                                    ],
+                                    flexbox: 'no-2009',
+                                }),
                             ],
-                            flexbox: 'no-2009',
-                          }),
-                        ],
-                      },
+                        },
                     },
-                  ],
-                },
-                extractTextPluginOptions
-              )
-            ),
-            // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
-          },
+                ]
+            },
+            // "postcss" loader applies autoprefixer to our CSS.
+            // "css" loader resolves paths in CSS and adds assets as dependencies.
+            // "style" loader turns CSS into JS modules that inject <style> tags.
+            // In production, we use a plugin to extract that CSS to a file, but
+            // in development "style" loader enables hot editing of CSS.
+            {
+                test: /\.css$/,
+                use: [
+                    require.resolve('style-loader'),
+                    {
+                        loader: require.resolve('css-loader'),
+                        options: {
+                            importLoaders: 1,
+                        },
+                    },
+                    {
+                        loader: require.resolve('postcss-loader'),
+                        options: {
+                            // Necessary for external CSS imports to work
+                            // https://github.com/facebookincubator/create-react-app/issues/2677
+                            ident: 'postcss',
+                            plugins: () => [
+                                require('postcss-flexbugs-fixes'),
+                                autoprefixer({
+                                    browsers: [
+                                        '>1%',
+                                        'last 4 versions',
+                                        'Firefox ESR',
+                                        'not ie < 9', // React doesn't support IE8 anyway
+                                    ],
+                                    flexbox: 'no-2009',
+                                }),
+                            ],
+                        },
+                    },
+                ],
+            },
           {
               test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
               loader: "url-loader?limit=10000&mimetype=application/font-woff"
