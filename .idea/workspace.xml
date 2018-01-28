@@ -2,6 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4aa37c7f-344a-41a2-93c9-717e7a462f7a" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/7d5128ef63563dce2fcc911323000798.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/asset-manifest.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/service-worker.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/static/js/main.78bedb24.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/static/js/main.78bedb24.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/static/media/fetchinAvatar.dedb8a34.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/static/media/fetchingAvatarNoMoreBeer.1c738192.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/BeerModal/BeerModal.jsx" afterPath="$PROJECT_DIR$/src/components/BeerModal/BeerModal.jsx" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -31,8 +39,8 @@
       <file leaf-file-name="BeerModal.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/BeerModal/BeerModal.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="63" column="15" lean-forward="false" selection-start-line="63" selection-start-column="15" selection-end-line="66" selection-end-column="12" />
+            <state relative-caret-position="572">
+              <caret line="95" column="32" lean-forward="false" selection-start-line="95" selection-start-column="32" selection-end-line="95" selection-end-column="32" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -241,12 +249,12 @@
       <updated>1516919660284</updated>
       <workItem from="1516919661497" duration="3487000" />
       <workItem from="1517002363021" duration="15560000" />
-      <workItem from="1517063441897" duration="36001000" />
+      <workItem from="1517063441897" duration="36229000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55048000" />
+    <option name="totallyTimeSpent" value="55276000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -659,15 +667,15 @@
         <state relative-caret-position="66">
           <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding>
-            <element signature="e#0#53#0" expanded="true" />
+            <element signature="e#0#53#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/BeerModal/BeerModal.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="63" column="15" lean-forward="false" selection-start-line="63" selection-start-column="15" selection-end-line="66" selection-end-column="12" />
+        <state relative-caret-position="572">
+          <caret line="95" column="32" lean-forward="false" selection-start-line="95" selection-start-column="32" selection-end-line="95" selection-end-column="32" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
