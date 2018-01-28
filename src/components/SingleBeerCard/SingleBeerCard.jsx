@@ -44,7 +44,7 @@ class SingleBeerCard extends Component {
 
     render() {
         return (
-            <div className="beer-card-container column is-one-quarter-desktop is-one-third-tablet" ref={(_elem) => { this.cardContainer = _elem; }} onClick={() => { this.props.history.push(`/beer/${this.props.beer.id}`) }}>
+            <div className="beer-card-container column is-one-quarter-desktop is-one-third-tablet" onClick={() => { this.props.history.push(`/beer/${this.props.beer.id}`) }}>
                 <div className="card beer-card">
                     {!this.imgCont}
                     <div className="card-content card-flex-center" ref={(_imgContainer) => { this.imgCont = _imgContainer; }}>
