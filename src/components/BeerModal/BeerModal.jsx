@@ -61,10 +61,10 @@ class BeerModal extends Component {
         document.body.classList.add('stop-scrolling');
     }
     componentWillUpdate(nextProps) {
-        console.log(nextProps);
-        if(!(nextProps.beer || nextProps.isFetching)) {
-            this.props.fetchNextPage();
-        }
+        // console.log(nextProps);
+        // if(!(nextProps.beer || nextProps.isFetching)) {
+        //     this.props.fetchNextPage();
+        // }
     }
     componentWillUnmount() {
         document.body.classList.remove('stop-scrolling');
