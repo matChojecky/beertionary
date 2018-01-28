@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4aa37c7f-344a-41a2-93c9-717e7a462f7a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/BeerModal/BeerModal.jsx" afterPath="$PROJECT_DIR$/src/components/BeerModal/BeerModal.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/SingleBeerCard/SingleBeerCard.jsx" afterPath="$PROJECT_DIR$/src/components/SingleBeerCard/SingleBeerCard.jsx" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SingleBeerCard.jsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SingleBeerCard.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/SingleBeerCard/SingleBeerCard.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="31" column="24" lean-forward="false" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
+            <state relative-caret-position="238">
+              <caret line="46" column="182" lean-forward="false" selection-start-line="46" selection-start-column="176" selection-end-line="46" selection-end-column="182" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -31,8 +32,8 @@
       <file leaf-file-name="BeerModal.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/BeerModal/BeerModal.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="616">
-              <caret line="127" column="72" lean-forward="false" selection-start-line="127" selection-start-column="72" selection-end-line="127" selection-end-column="72" />
+            <state relative-caret-position="1294">
+              <caret line="107" column="107" lean-forward="false" selection-start-line="107" selection-start-column="100" selection-end-line="107" selection-end-column="107" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -72,7 +73,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="66">
@@ -122,6 +123,8 @@
       <find>z-</find>
       <find>class=</find>
       <find>console</find>
+      <find>history</find>
+      <find>histor</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -148,16 +151,16 @@
         <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/components/Loader/Loader.jsx" />
         <option value="$PROJECT_DIR$/src/components/SingleBeerCard/SingleBeerCard.scss" />
-        <option value="$PROJECT_DIR$/src/components/BeerModal/BeerModal.jsx" />
         <option value="$PROJECT_DIR$/src/components/BeerModal/BeerModal.scss" />
         <option value="$PROJECT_DIR$/src/redux/store/index.js" />
-        <option value="$PROJECT_DIR$/src/components/SingleBeerCard/SingleBeerCard.jsx" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$USER_HOME$/.gitconfig" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/config/webpack.config.dev.js" />
         <option value="$PROJECT_DIR$/config/webpack.config.prod.js" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/components/BeerModal/BeerModal.jsx" />
+        <option value="$PROJECT_DIR$/src/components/SingleBeerCard/SingleBeerCard.jsx" />
       </list>
     </option>
   </component>
@@ -255,12 +258,12 @@
       <updated>1516919660284</updated>
       <workItem from="1516919661497" duration="3487000" />
       <workItem from="1517002363021" duration="15560000" />
-      <workItem from="1517063441897" duration="34371000" />
+      <workItem from="1517063441897" duration="34576000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53418000" />
+    <option name="totallyTimeSpent" value="53623000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -596,16 +599,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/BeerModal/BeerModal.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="127" column="72" lean-forward="false" selection-start-line="127" selection-start-column="72" selection-end-line="127" selection-end-column="72" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/BeerModal/BeerModal.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="497">
@@ -620,16 +613,6 @@
           <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding>
             <element signature="e#0#53#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/SingleBeerCard/SingleBeerCard.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="31" column="24" lean-forward="false" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -687,6 +670,26 @@
         <state relative-caret-position="66">
           <caret line="3" column="127" lean-forward="false" selection-start-line="3" selection-start-column="127" selection-end-line="3" selection-end-column="127" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/BeerModal/BeerModal.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1294">
+          <caret line="107" column="107" lean-forward="false" selection-start-line="107" selection-start-column="100" selection-end-line="107" selection-end-column="107" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/SingleBeerCard/SingleBeerCard.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="46" column="182" lean-forward="false" selection-start-line="46" selection-start-column="176" selection-end-line="46" selection-end-column="182" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
