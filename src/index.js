@@ -11,7 +11,7 @@ import registerServiceWorker from './registerServiceWorker'
 
 ReactDOM.render(
     <Provider store={store}>
-        <Router>
+        <Router basename="/beertionary/build/">
             <App />
         </Router>
     </Provider>,

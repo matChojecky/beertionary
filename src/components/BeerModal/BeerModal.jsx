@@ -93,7 +93,7 @@ class BeerModal extends Component {
         if(!this.props.beer) {
             return createPortal((
                 <div className="modal is-active single-beer-container">
-                <div className="modal-background" onClick={(e) => { e.preventDefault(); this.props.history.push('') }}/>
+                <div className="modal-background" onClick={(e) => { e.preventDefault(); this.props.history.push('/') }}/>
                 <div className="modal-card">
                     <section className="modal-card-body">
                         {/* <!-- Content ... --> */}
@@ -105,7 +105,7 @@ class BeerModal extends Component {
         }
         return createPortal((
             <div className="modal is-active single-beer-container">
-                <div className="modal-background" onClick={(e) => { e.stopPropagation(); this.props.history.push(''); }}></div>
+                <div className="modal-background" onClick={(e) => { e.stopPropagation(); this.props.history.push('/'); }}></div>
                 <div className="modal-card">
                     <section className="modal-card-body">
                     {/* <!-- Content ... --> */}
