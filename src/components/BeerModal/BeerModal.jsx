@@ -62,7 +62,7 @@ class BeerModal extends Component {
     }
     componentWillUpdate(nextProps) {
         console.log(nextProps);
-        if(!(nextProps.beer || nextProps.isFetching)) {
+        if(this.props && !(nextProps.beer || nextProps.isFetching)) {
             this.prop.fetchNextPage();
         }
     }
