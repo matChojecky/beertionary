@@ -45,9 +45,8 @@ class BeerModal extends Component {
         document.body.classList.add('stop-scrolling');
     }
     componentWillUpdate(nextProps) {
-        console.log(this.props, nextProps);
-        if(this.props && !(nextProps.beer || nextProps.isFetching)) {
-            nextProps.fetchNextPage();
+        if(!(nextProps.beer || nextProps.isFetching)) {
+            this.props.fetchNextPage();
         }
     }
     componentWillUnmount() {

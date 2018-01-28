@@ -9,6 +9,7 @@ import './index.scss';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker'
 
+// /beertionary/build/
 ReactDOM.render(
     <Provider store={store}>
         <Router basename="/beertionary/build/">
