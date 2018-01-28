@@ -160,4 +160,4 @@ class BeerModal extends Component {
         ), document.querySelector('#root'));
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps, null, {pure: false})(BeerModal);
+export default connect(mapStateToProps, mapDispatchToProps)(BeerModal);
