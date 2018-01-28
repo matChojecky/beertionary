@@ -1,0 +1,14 @@
+{
+  "main.js": "static/js/main.44894e0f.js",
+  "main.js.map": "static/js/main.44894e0f.js.map",
+  "static\\media\\App.scss": "static/media/App.642d0b47.scss",
+  "static\\media\\BeerModal.scss": "static/media/BeerModal.ac4c6909.scss",
+  "static\\media\\FetchingAvatar.scss": "static/media/FetchingAvatar.d4c77b6c.scss",
+  "static\\media\\Header.scss": "static/media/Header.c89e8545.scss",
+  "static\\media\\Loader.scss": "static/media/Loader.f9a8562d.scss",
+  "static\\media\\SingleBeerCard.scss": "static/media/SingleBeerCard.4341e8e5.scss",
+  "static\\media\\fetchinAvatar.png": "static/media/fetchinAvatar.dedb8a34.png",
+  "static\\media\\fetchingAvatarNoMoreBeer.png": "static/media/fetchingAvatarNoMoreBeer.1c738192.png",
+  "static\\media\\index.scss": "static/media/index.23e1f917.scss",
+  "static\\media\\pint-of-beer.svg": "static/media/pint-of-beer.7d5128ef.svg"
+}

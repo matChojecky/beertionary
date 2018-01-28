@@ -1,0 +1,31 @@
+.brand-elements {
+    display: flex;
+    align-items: flex-end;
+    flex-basis: 100%;
+    min-width: 300px;
+    img {
+        width: auto;
+        max-height: 3em;
+        margin: 6px;
+        transform: rotate(30deg);
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    &:hover {
+        img {
+            transform: rotate(0);
+        }
+    }
+    .title {
+        word-break: normal;
+        flex: 1;
+        align-self: flex-end;
+    }
+}
+.search-field {
+}
+.only-liked {
+    align-self: center;
+    margin: 10px 15px;
+    display: inline-flex;
+    justify-content: center;
+}
