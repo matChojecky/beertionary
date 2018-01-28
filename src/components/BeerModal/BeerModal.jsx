@@ -8,21 +8,6 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import Loader from '../Loader/Loader.jsx';
 import './BeerModal.scss';
 
-function debounce(func, wait, immediate) {
-    var timeout;
-    return function() {
-        var context = this, args = arguments;
-        var later = function() {
-            timeout = null;
-            if (!immediate) func.apply(context, args);
-        };
-        var callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) func.apply(context, args);
-    };
-};
-
 const mapStateToProps = (state, ownProps) => {
     const beerId = parseInt(ownProps.match.params.id, 10);
     const beer = state.beerData.find(beer => beer.id === beerId);
@@ -54,14 +39,13 @@ class BeerModal extends Component {
         };
 
         this.handleLikedBeer = this.handleLikedBeer.bind(this);
-        this.debouncedFetch = debounce(this.props.fetchNextPage, 1000, true);
     }
 
     componentWillMount() {
         document.body.classList.add('stop-scrolling');
     }
     componentWillUpdate(nextProps) {
-        console.log(nextProps);
+        console.log(this.props, nextProps);
         if(this.props && !(nextProps.beer || nextProps.isFetching)) {
             this.prop.fetchNextPage();
         }
