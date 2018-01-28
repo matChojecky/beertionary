@@ -55,16 +55,17 @@ class BeerModal extends Component {
         };
 
         this.handleLikedBeer = this.handleLikedBeer.bind(this);
+        this.debouncedFetch = debounce(this.props.fetchNextPage, 1000, true);
     }
 
     componentWillMount() {
         document.body.classList.add('stop-scrolling');
     }
     componentWillUpdate(nextProps) {
-        // console.log(nextProps);
-        // if(!(nextProps.beer || nextProps.isFetching)) {
-        //     this.props.fetchNextPage();
-        // }
+        console.log(nextProps);
+        if(!(nextProps.beer || nextProps.isFetching)) {
+            this.debouncedFetch();
+        }
     }
     componentWillUnmount() {
         document.body.classList.remove('stop-scrolling');
@@ -120,13 +121,13 @@ class BeerModal extends Component {
                             </div>
                         </div>
                         <div className="beer-info" style={{  }}>
-                            <section class="hero">
-                                <div class="hero-body section beer-info-name">
-                                    <div class="container" style={{ width: 'auto' }}>
-                                        <h1 class="title">
+                            <section className="hero">
+                                <div className="hero-body section beer-info-name">
+                                    <div className="container" style={{ width: 'auto' }}>
+                                        <h1 className="title">
                                             {this.props.beer.name}
                                         </h1>
-                                        <h2 class="subtitle">
+                                        <h2 className="subtitle">
                                             {this.props.beer.tagline}
                                         </h2>
                                         <div className="underline-name"></div>
@@ -137,7 +138,7 @@ class BeerModal extends Component {
                                 <span className="beer-details"><b>IBU:</b> {this.props.beer.ibu}</span>
                                 <span className="beer-details"><b>ABV:</b> {this.props.beer.abv}</span>
                                 <span className="beer-details"><b>EBC:</b> {this.props.beer.ebc}</span>
-                                <span aria-label={this.state.isFavorito ? '' : 'Did you like this beer?'} data-microtip-position="top" role={this.state.isFavorito ? '' : 'tooltip'} onClick={this.handleLikedBeer} class={this.state.isFavorito ? "icon is-medium like-heart is-red" : "icon is-medium like-heart"}>
+                                <span aria-label={this.state.isFavorito ? '' : 'Did you like this beer?'} data-microtip-position="top" role={this.state.isFavorito ? '' : 'tooltip'} onClick={this.handleLikedBeer} className={this.state.isFavorito ? "icon is-medium like-heart is-red" : "icon is-medium like-heart"}>
                                     <FontAwesomeIcon icon={[this.state.iconPrefix, 'heart']} />
                                 </span>
                             </div>
