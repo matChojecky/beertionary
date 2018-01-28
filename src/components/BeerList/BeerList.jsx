@@ -30,9 +30,8 @@ function throttle(fn, threshhold, scope) {
     };
   }
 
-const likedBeers = JSON.parse(localStorage.getItem('likedBeers'));
 const mapStateToProps = state => {
-    return { beerData: state.beerData.filter(beer => beer.name.toLowerCase().includes(state.searchByName.toLowerCase())).filter(beer => !state.filterOnlyLiked || likedBeers.includes(beer.id)), isFetching: state.isFetching, canFetch: state.canFetch }
+    return { beerData: state.beerData.filter(beer => beer.name.toLowerCase().includes(state.searchByName.toLowerCase())).filter(beer => !state.filterOnlyLiked || JSON.parse(localStorage.getItem('likedBeers')).includes(beer.id)), isFetching: state.isFetching, canFetch: state.canFetch, filterOnlyLiked: state.filterOnlyLiked  }
 };
 const mapDispatchToProps = dispatch => {
     return {
@@ -47,7 +46,6 @@ class BeerList extends Component {
     }
 
     componentDidMount() {
-        // console.log(this.props);
         this.props.fetchNextPage();
         window.addEventListener('scroll', this.handleScroll);
     }
@@ -56,13 +54,13 @@ class BeerList extends Component {
         window.removeEventListener('scroll', this.handleScroll);
     }
     componentDidUpdate() {
-        if(this.props.filterOnlyLiked && !this.props.isFetching) {
+        if(this.props.beerData.length < JSON.parse(localStorage.getItem('likedBeers')).length) {
             const timeout = setTimeout(() => {
                 if(this.props.filterOnlyLiked && !this.props.isFetching) {
                     this.props.fetchNextPage();
                 }
                 clearTimeout(timeout);
-            }, 2500);
+            }, 1500);
         }
     }
     handleScroll(event) {
@@ -86,4 +84,4 @@ class BeerList extends Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BeerList);
+export default connect(mapStateToProps, mapDispatchToProps, null, { pure: false })(BeerList);

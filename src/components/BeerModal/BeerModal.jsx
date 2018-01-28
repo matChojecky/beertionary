@@ -76,7 +76,6 @@ class BeerModal extends Component {
         });
     }
     render() {
-        console.log(this.props);
         if(!this.props.beer) {
             return createPortal((
                 <div className="modal is-active single-beer-container">
