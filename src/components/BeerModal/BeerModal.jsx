@@ -23,9 +23,9 @@ function debounce(func, wait, immediate) {
     };
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
     const test = new RegExp(`(${window.location.origin}/beer/(\\d+).*)`);
-    const beerId = parseInt(window.location.href.replace(test, "$2"), 10);
+    const beerId = parseInt(ownProps.match.params.id, 10); //parseInt(window.location.href.replace(test, "$2"), 10);
     const beer = state.beerData.find(beer => beer.id === beerId);
     const beersData = state.beerData;
     return {
