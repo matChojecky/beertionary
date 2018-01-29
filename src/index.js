@@ -17,7 +17,7 @@ if(!localStorage.getItem('likedBeers')) {
 // /beertionary/build/
 ReactDOM.render(
     <Provider store={store}>
-        <Router basename="/">
+        <Router basename="/beertionary/build/">
             <App />
         </Router>
     </Provider>,

@@ -8,16 +8,19 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import Loader from '../Loader/Loader.jsx';
 import './BeerModal.scss';
 
+
 const mapStateToProps = (state, ownProps) => {
+// Double check and Set likedBeers array in localStorage
+    if(!localStorage.getItem('likedBeers')) {
+        localStorage.setItem('likedBeers', JSON.stringify([]));
+    };
     const beerId = parseInt(ownProps.match.params.id, 10);
     const beer = state.beerData.find(beer => beer.id === beerId);
-    console.log(beer);
     const suggestedBeersData = state.beerData.filter(entity => {
         if(!beer || beer.id === entity.id) { return false; }
         let similar = (entity.ibu > beer.ibu - 20 && entity.ibu < beer.ibu + 20) && (entity.abv > beer.abv - 2 && entity.abv < beer.abv + 2) && (entity.ebc > beer.ebc - 20 && entity.ebc < beer.ebc + 20);
         return similar;
     });
-
     return {
         beer,
         canFetch: state.canFetch,
@@ -36,12 +39,13 @@ class BeerModal extends Component {
     constructor(props) {
         super(props);
         const likedBeers = JSON.parse(localStorage.getItem('likedBeers')) || [];
-        const isFavorito = this.props.beer ? likedBeers.includes(this.props.beer.id) : false;
+        const isFavorito = props.beer ? likedBeers.includes(props.beer.id) : false;
         this.state = {
             likedBeers,
             isFavorito,
             iconPrefix: isFavorito ? 'fas' : 'far',
-            suggestedBeers: []
+            suggestedBeers: [],
+            areSuggestionsHidden: true,
         };
 
         this.handleLikedBeer = this.handleLikedBeer.bind(this);
@@ -49,8 +53,29 @@ class BeerModal extends Component {
 
     componentWillMount() {
         document.body.classList.add('stop-scrolling');
+        if(this.props.beer) {
+            const isFavorito = this.props.beer ? this.state.likedBeers.includes(this.props.beer.id) : false;
+            this.setState({ isFavorito });
+        }
+    }
+
+    componentWillReceiveProps(newProps) {
+        if(newProps.beer && this.props.beer && newProps.beer.id !== this.props.beer.id) {
+            const likedBeers = JSON.parse(localStorage.getItem('likedBeers')) || [];
+            const isFavorito = newProps.beer ? likedBeers.includes(newProps.beer.id) : false;
+            this.setState({
+                likedBeers,
+                isFavorito,
+                iconPrefix: isFavorito ? 'fas' : 'far',
+                areSuggestionsHidden: true,
+            });
+        }
     }
     componentWillUpdate(nextProps) {
+        if(!this.props.beer && nextProps.beer) {
+            const isFavorito = nextProps.beer ? this.state.likedBeers.includes(nextProps.beer.id) : false;
+            this.setState({ isFavorito, iconPrefix: isFavorito ? 'fas' : 'far' });
+        }
         if(!(nextProps.beer || nextProps.isFetching)) {
             this.props.fetchNextPage();
         }
@@ -85,9 +110,8 @@ class BeerModal extends Component {
         });
     }
     render() {
-        console.log(this.props.suggestedBeersData);
-        const suggestions = this.props.suggestedBeersData.splice(0, 3).map(suggestedBeer => (
-            <div className="box" style={{ marginBottom: '1.5rem', flex: 1, marginLeft: '10px', marginRight: '10px' }}>
+        const suggestions = [...this.props.suggestedBeersData].splice(0, 3).map(suggestedBeer => (
+            <div className="box" style={{ marginBottom: '1.5rem', flex: 1, marginLeft: '10px', marginRight: '10px', cursor: 'pointer' }} onClick={() => { this.props.history.push(`/beer/${suggestedBeer.id}`); this.setState({ areSuggestionsHidden: true }); this._updateLiked(); }}>
                 <article className="media" style={{ flexDirection: 'column', alignItems: 'center' }}>
                     <div className="">
                         <figure className="image is-128x128">
@@ -104,7 +128,6 @@ class BeerModal extends Component {
                 </article>
             </div>
         ));
-
         if(!this.props.beer) {
             return createPortal((
                 <div className="modal is-active single-beer-container">
@@ -163,17 +186,20 @@ class BeerModal extends Component {
 
                         </div>
                         <div className="beer-suggestions" style={{  }}>
-                            <div className="beer-suggestions-inner">
-                                <div className="toogle-suggestions">
-                                    <span style={{ fontSize: '2rem' }}>
-                                        <FontAwesomeIcon icon={['fas', 'angle-double-up']} />
-                                    </span>
-                                    <p>Show more beer you might like if you find {this.props.beer.name} delectable</p>
+                            {suggestions.length ? (
+                                <div className={this.state.areSuggestionsHidden ? 'beer-suggestions-inner are-suggestions-hidden' : 'beer-suggestions-inner'}>
+                                    <div className="toogle-suggestions" onClick={() => { this.setState((prevState, props) => ({ areSuggestionsHidden: !prevState.areSuggestionsHidden })) }}>
+                                        <span style={{ fontSize: '2rem' }}>
+                                            <FontAwesomeIcon icon={this.state.areSuggestionsHidden ? ['fas', 'angle-double-up'] : ['fas', 'angle-double-down']} />
+                                        </span>
+                                        {this.state.areSuggestionsHidden ? <p className="title is-6 show-suggestions-txt">Show more beers you might like if you find this one delectable</p> : <p className="title is-6 show-suggestions-txt">Hide suggestions</p>}
+                                    </div>
+                                    <div className={'suggestions-container'}>
+                                        <p className="title is-6 small-screen-incentive">More beer you might like if you find this one delectable:</p>
+                                        {suggestions}
+                                    </div>
                                 </div>
-                                <div className={'suggestions-container'}>
-                                    {suggestions}
-                                </div>
-                            </div>
+                            ) : null}
                         </div>
                     </div>
                     </section>
@@ -182,4 +208,4 @@ class BeerModal extends Component {
         ), document.querySelector('#root'));
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(BeerModal);
+export default connect(mapStateToProps, mapDispatchToProps, null, { pure: false })(BeerModal);
