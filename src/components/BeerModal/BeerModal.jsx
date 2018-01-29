@@ -11,12 +11,18 @@ import './BeerModal.scss';
 const mapStateToProps = (state, ownProps) => {
     const beerId = parseInt(ownProps.match.params.id, 10);
     const beer = state.beerData.find(beer => beer.id === beerId);
-    const beersData = state.beerData;
+    console.log(beer);
+    const suggestedBeersData = state.beerData.filter(entity => {
+        if(!beer || beer.id === entity.id) { return false; }
+        let similar = (entity.ibu > beer.ibu - 20 && entity.ibu < beer.ibu + 20) && (entity.abv > beer.abv - 2 && entity.abv < beer.abv + 2) && (entity.ebc > beer.ebc - 20 && entity.ebc < beer.ebc + 20);
+        return similar;
+    });
+
     return {
         beer,
         canFetch: state.canFetch,
         isFetching: state.isFetching,
-        beersData,
+        suggestedBeersData,
     }
 };
 const mapDispatchToProps = dispatch => {
@@ -48,6 +54,9 @@ class BeerModal extends Component {
         if(!(nextProps.beer || nextProps.isFetching)) {
             this.props.fetchNextPage();
         }
+        if(nextProps.suggestedBeersData && nextProps.suggestedBeersData.length < 3 && nextProps.canFetch && !nextProps.isFetching) {
+            this.props.fetchNextPage();
+        }
     }
     componentWillUnmount() {
         document.body.classList.remove('stop-scrolling');
@@ -76,6 +85,26 @@ class BeerModal extends Component {
         });
     }
     render() {
+        console.log(this.props.suggestedBeersData);
+        const suggestions = this.props.suggestedBeersData.splice(0, 3).map(suggestedBeer => (
+            <div className="box" style={{ marginBottom: '1.5rem', flex: 1, marginLeft: '10px', marginRight: '10px' }}>
+                <article className="media" style={{ flexDirection: 'column', alignItems: 'center' }}>
+                    <div className="">
+                        <figure className="image is-128x128">
+                            <img src={suggestedBeer.image_url} alt="Image"  style={{ height: '100%', width: 'auto', marginLeft: 'auto', marginRight: 'auto '}} />
+                        </figure>
+                    </div>
+                    <div className="media-content">
+                        <div className="content">
+                            <p style={{ textAlign: 'center' }}>
+                                <strong>{suggestedBeer.name}</strong>
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        ));
+
         if(!this.props.beer) {
             return createPortal((
                 <div className="modal is-active single-beer-container">
@@ -133,7 +162,19 @@ class BeerModal extends Component {
 
 
                         </div>
-                        <div className="beer-suggestions" style={{  }}/>
+                        <div className="beer-suggestions" style={{  }}>
+                            <div className="beer-suggestions-inner">
+                                <div className="toogle-suggestions">
+                                    <span style={{ fontSize: '2rem' }}>
+                                        <FontAwesomeIcon icon={['fas', 'angle-double-up']} />
+                                    </span>
+                                    <p>Show more beer you might like if you find {this.props.beer.name} delectable</p>
+                                </div>
+                                <div className={'suggestions-container'}>
+                                    {suggestions}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     </section>
                 </div>

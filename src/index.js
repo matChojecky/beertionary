@@ -9,10 +9,15 @@ import './index.scss';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker'
 
+// Set likedBeers array in localStorage
+if(!localStorage.getItem('likedBeers')) {
+    localStorage.setItem('likedBeers', JSON.stringify([]));
+};
+
 // /beertionary/build/
 ReactDOM.render(
     <Provider store={store}>
-        <Router basename="/beertionary/build/">
+        <Router basename="/">
             <App />
         </Router>
     </Provider>,

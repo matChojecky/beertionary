@@ -13,7 +13,7 @@
     .beer-info-grid {
       margin: 15px;
       display: grid;
-      grid-template-rows: 1fr 250px;
+      grid-template-rows: 1fr auto;
       grid-template-columns: 25% 1fr;
       height: 100%;
       @media (max-width: 530px) {
@@ -94,6 +94,29 @@
       }
       .beer-suggestions {
         grid-area: beer_suggestions;
+        position: relative;
+        .beer-suggestions-inner {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          position: absolute;
+          bottom: -100%;
+          width: 100%;
+          .toogle-suggestions {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #ffffff;
+          }
+          .suggestions-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: stretch;
+            width: 100%;
+          }
+
+        }
       }
     }
   }
